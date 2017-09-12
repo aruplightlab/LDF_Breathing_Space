@@ -4,36 +4,25 @@
  * 
  * 2017 francesco.anselmo@arup.com
  *  
- * 1  Marble Arch 51.51340  -0.15872  https://goo.gl/maps/x4mFMkwH6is http://api.erg.kcl.ac.uk/AirQuality/Data/Nowcast/lat=51.5134/lon=-0.015872/Json
- * 2  King's Cross Station  51.53042  -0.12381  https://goo.gl/maps/3nyrVQmQ8LN2  http://api.erg.kcl.ac.uk/AirQuality/Data/Nowcast/lat=51.53042/lon=-0.12381/Json
- * 3  Trafalgar Square  51.50803  -0.12806  https://goo.gl/maps/t8VwQDcc76H2  http://api.erg.kcl.ac.uk/AirQuality/Data/Nowcast/lat=51.50803/lon=-0.12806/Json
- * 4  Shoreditch Highstreet 51.52435  -0.07724  https://goo.gl/maps/31VJYHPUt1n http://api.erg.kcl.ac.uk/AirQuality/Data/Nowcast/lat=51.52435/lon=-0.07724/Json
- * 5  London Bridge 51.50787  -0.08773  https://goo.gl/maps/WpfUZq2NXzw http://api.erg.kcl.ac.uk/AirQuality/Data/Nowcast/lat=51.50787/lon=-0.08773/Json
- * 6  Tottenham Court Road  51.51634  -0.13049  https://goo.gl/maps/AHmoSDmvAtA2  http://api.erg.kcl.ac.uk/AirQuality/Data/Nowcast/lat=51.51634/lon=-0.13049/Json
- * 7  BT Tower  51.52133  -0.13897  https://goo.gl/maps/4n367FpZrsA2  http://api.erg.kcl.ac.uk/AirQuality/Data/Nowcast/lat=51.52133/lon=-0.13897/Json
- * 8  Heathrow Airport  51.47002  -0.45429  https://goo.gl/maps/H7qndHa8mrJ2  http://api.erg.kcl.ac.uk/AirQuality/Data/Nowcast/lat=51.47002/lon=-0.45429/Json
- * 9  Big Ben 51.50072  -0.12462  https://goo.gl/maps/HeMf9EJMABN2  http://api.erg.kcl.ac.uk/AirQuality/Data/Nowcast/lat=51.50072/lon=-0.12462/Json
- * 10 Breathing Space Outside 51.52614  -0.08391  https://goo.gl/maps/yCHNqFfCGzN2  http://api.erg.kcl.ac.uk/AirQuality/Data/Nowcast/lat=51.52614/lon=-0.08391/Json
- * 11 Breathing Space Inside  51.52589  -0.08383  https://goo.gl/maps/ZKegfBrHKc42  http://api.erg.kcl.ac.uk/AirQuality/Data/Nowcast/lat=51.52589/lon=-0.08383/Json
- * 
- * PM10 particles key
- * 0 - 50 Low (green)
- * 51 - 75 Moderate (yellow)
- * 76 - 100 High (red)
- * more than 100 Very high (pink/purple)
- * 
  */
 
-//const char* host = "api.erg.kcl.ac.uk";
-const char* host = "137.73.146.59";
-//const char* host = "192.168.1.1";
-String url = "/AirQuality/Data/Nowcast/lat=51.5134/lon=-0.015872/Json";
+ /*
+ * IP Addresses
+ * 192.168.1.51 Arup BS 1
+ * ...
+ * 192.168.1.61 Arup BS 11
+ */
+
+#define IP_ADDRESS 51
+#define NODE_NAME "breathing1"
+
+const char *ssid = "ssid";
+const char *password = "password";
 
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h> 
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
-
 #include "FastLED.h"
 
 FASTLED_USING_NAMESPACE
@@ -54,22 +43,9 @@ CRGBPalette16 palette = PartyColors_p;
 int transition = 1;
 int brightness = 250;
 
-/*
- * IP Addresses
- * 192.168.1.51 Arup BS 1
- * ...
- * 192.168.1.61 Arup BS 11
- */
-
-#define IP_ADDRESS 51
-#define NODE_NAME "breathing1"
-
 #define BRIGHTNESS          250
 #define FRAMES_PER_SECOND  120
  
-const char *ssid = "ssid";
-const char *password = "password";
-
 #define CLR_WHITE 0
 #define CLR_BLACK 1
 #define CLR_RED 2
@@ -281,8 +257,6 @@ void loop ( void ) {
     FastLED.delay(1000/FRAMES_PER_SECOND); 
     // do some periodic updates
     EVERY_N_MILLISECONDS( 20 ) { idx++; } // slowly cycle the index variable
-    //EVERY_N_SECONDS( 60 ) { getPM10Value(); } // get PM10 value from London Air website every 60 seconds
-    //if(client.remotePort() < 1){ESP.reset();}
 }
 
 void setColor(int color) {
@@ -374,42 +348,4 @@ void dim()
   Serial.println(brightness);
 }
 
-void getPM10Value() 
-{
-  Serial.print("connecting to ");
-  Serial.println(host);
-  
-  // Use WiFiClient class to create TCP connections
-  WiFiClient client;
-  const int httpPort = 80;
-  if (!client.connect(host, httpPort)) {
-    Serial.println("connection failed");
-    return;
-  }
-  
-  Serial.print("Requesting URL: ");
-  Serial.println(url);
-  
-  // This will send the request to the server
-  client.print(String("GET ") + url + " HTTP/1.1\r\n" +
-               "Host: " + host + "\r\n" + 
-               "Connection: close\r\n\r\n");
-  unsigned long timeout = millis();
-  while (client.available() == 0) {
-    if (millis() - timeout > 5000) {
-      Serial.println(">>> Client Timeout !");
-      client.stop();
-      return;
-    }
-  }
-  
-  // Read all the lines of the reply from server and print them to Serial
-  while(client.available()){
-    String line = client.readStringUntil('\r');
-    Serial.print(line);
-  }
-  
-  Serial.println();
-  Serial.println("closing connection");  
-}
 
