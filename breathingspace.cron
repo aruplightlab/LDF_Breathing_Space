@@ -1,6 +1,0 @@
-SHELL=/bin/sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-* 3 * * *   pi      git pull /home/pi/LDF_Breathing_Space/
-* 4 * * *   root    reboot
-* * * * *   root    /home/pi/LDF_Breathing_Space/check-tunnel.sh
-* * * * *   root    python /home/pi/LDF_Breathing_Space/dispatch.py
