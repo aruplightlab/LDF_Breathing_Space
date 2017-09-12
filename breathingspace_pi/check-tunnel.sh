@@ -7,7 +7,7 @@ createTunnel() {
     fi
 }
 ## Run the 'ls' command remotely.  If it returns non-zero, then create a new connection
-/usr/bin/ssh -i /home/dots/.ssh/id_rsa -p 19922 tunnel@localhost ls
+/usr/bin/ssh -i /home/pi/.ssh/id_rsa -p 19922 tunnel@localhost ls
 if [[ $? -ne 0 ]]; then
     echo Creating new tunnel connection
     createTunnel
