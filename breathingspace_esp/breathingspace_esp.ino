@@ -68,7 +68,7 @@ int brightness = 250;
 #define FRAMES_PER_SECOND  120
  
 const char *ssid = "BreathingSpace";
-const char *password = "password";
+const char *password = "mangotree";
 
 #define CLR_WHITE 0
 #define CLR_BLACK 1
@@ -221,11 +221,11 @@ void setup ( void ) {
  
     Serial.begin ( 115200 );
     // config static IP
-    IPAddress ip(192, 168, 1, IP_ADDRESS); // set desired IP Address
+    IPAddress ip(192, 168, 0, IP_ADDRESS); // set desired IP Address
     IPAddress subnet(255, 255, 255, 0); // set subnet mask 
-    IPAddress gateway(192, 168, 1, 1); // set gateway 
-    IPAddress dns(8,8,8,8);
-    WiFi.config(ip, dns, gateway, subnet);
+    IPAddress gateway(192, 168, 0, 1); // set gateway 
+    //IPAddress dns(8,8,8,8);
+    WiFi.config(ip, gateway, subnet);
     Serial.print(F("Setting static ip to : "));
     Serial.println(ip);
     WiFi.begin ( ssid, password );
