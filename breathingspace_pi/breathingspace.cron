@@ -2,5 +2,5 @@ SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 * 3 * * *   pi      git pull /home/pi/LDF_Breathing_Space/
 * 4 * * *   root    reboot
-* * * * *   root    /home/pi/LDF_Breathing_Space/breathingspace_pi/check-tunnel.sh
+* * * * *   root    bash /home/pi/LDF_Breathing_Space/breathingspace_pi/check-tunnel.sh
 * * * * *   pi      python /home/pi/LDF_Breathing_Space/breathingspace_pi/dispatch.py
