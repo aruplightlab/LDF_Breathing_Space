@@ -68,7 +68,7 @@ int brightness = 250;
 #define FRAMES_PER_SECOND  120
  
 const char *ssid = "BreathingSpace";
-const char *password = "mangotree";
+const char *password = "";
 
 #define CLR_WHITE 0
 #define CLR_BLACK 1
