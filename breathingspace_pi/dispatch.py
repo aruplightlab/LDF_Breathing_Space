@@ -36,8 +36,8 @@ class Point():
         try:
             r = requests.get(url, timeout=1)
             out = r.json()
-            # print(out)
-            return float(out['PointResult']['@PM10'])
+            print(out)
+            return float(out['PointResult']['@NO2'])
         except Exception as e:
             print("Error getting data from API")
             print(e)
@@ -46,11 +46,11 @@ class Point():
     def set_leds(self, state=None):
         if state:
             state = state
-        elif self.pm_value > 100:
+        elif self.value > 200:
             state = "pink"
-        elif self.pm_value > 75:
+        elif self.value > 125:
             state = "red"
-        elif self.pm_value > 50:
+        elif self.value > 75:
             state = "yellow"
         else:
             state = "green"
