@@ -50,7 +50,7 @@ class Point():
             state = "pink"
         elif self.value > 125:
             state = "red"
-        elif self.value > 75:
+        elif self.value > 50:
             state = "yellow"
         else:
             state = "green"
