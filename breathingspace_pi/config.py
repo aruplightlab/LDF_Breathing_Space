@@ -13,67 +13,67 @@ ESP_IPS = {
 }
 
 LOCATIONS = {
-    1: {
+    7: {
         "name": "Marble Arch",
-        "lat": 51.51340,
-        "long": -0.15872,
+        "lat": 51.51319,
+        "long": -0.15826,
         "mapid": "x4mFMkwH6is",
     },
-    2: {
+    3: {
         "name": "King's Cross Station",
-        "lat": 51.53042,
-        "long": -0.12381,
+        "lat": 51.53064,
+        "long": -0.12259,
         "mapid": "3nyrVQmQ8LN2",
     },
-    3: {
+    6: {
         "name": "Trafalgar Square",
-        "lat": 51.50803,
-        "long": -0.12806,
+        "lat": 51.50752,
+        "long": -0.1279,
         "mapid": "t8VwQDcc76H2",
     },
-    4: {
+    1: {
         "name": "Shoreditch Highstreet",
         "lat": 51.52435,
         "long": -0.07724,
         "mapid": "31VJYHPUt1n",
     },
-    5: {
+    8: {
         "name": "London Bridge",
         "lat": 51.50787,
         "long": -0.08773,
         "mapid": "WpfUZq2NXzw",
     },
-    6: {
+    4: {
         "name": "Tottenham Court Road",
         "lat": 51.51634,
         "long": -0.13049,
         "mapid": "AHmoSDmvAtA2",
     },
-    7: {
+    2: {
         "name": "BT Tower",
-        "lat": 51.52133,
-        "long": -0.13897,
+        "lat": 51.52183,
+        "long": -0.13938,
         "mapid": "4n367FpZrsA2",
     },
-    8: {
+    11: {
         "name": "Heathrow Airport",
-        "lat": 51.47002,
-        "long": -0.45429,
+        "lat": 51.46887,
+        "long": -0.50774,
         "mapid": "H7qndHa8mrJ2",
     },
-    9: {
+    10: {
         "name": "Big Ben",
-        "lat": 51.50072,
-        "long": -0.12462,
+        "lat": 51.50101,
+        "long": -0.12635,
         "mapid": "HeMf9EJMABN2",
     },
-    10: {
-        "name": "Breathing Space Outside",
-        "lat": 51.52614,
-        "long": -0.08391,
-        "mapid": "yCHNqFfCGzN2",
+    9: {
+        "name": "Regent Park",
+        "lat": 51.53269,
+        "long": -0.14199,
+        "mapid": "u2D5zfN5RP62﻿",
     },
-    11: {
+    5: {
         "name": "Breathing Space Inside",
         "lat": 51.52589,
         "long": -0.08383,
